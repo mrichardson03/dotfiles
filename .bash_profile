@@ -74,3 +74,22 @@ knownrm() {
     sed -i '' "$1d" ~/.ssh/known_hosts
   fi
 }
+
+# Virtualenvwrapper needs to use Homebrew installed Python.
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
+
+# Activate virtualenvwrapper script.
+source /usr/local/bin/virtualenvwrapper.sh
+
+# Require pip to be run in a virtualenv to avoid junking up the system Python.
+export PIP_REQUIRE_VIRTUALENV=true
+
+# create commands to override pip restriction.
+# use `gpip` or `gpip3` to force installation of
+# a package in the global python environment
+gpip(){
+   PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+gpip3(){
+   PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
+}
