@@ -25,8 +25,8 @@ fi
 
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
-alias unssh='ssh -o UserKnownHostsFile=/dev/null -o StrictKeyHostChecking=no'
-alias unscp='scp -o UserKnownHostsFile=/dev/null -o StrictKeyHostChecking=no'
+alias unssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+alias unscp='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
 # Git aliases.
 alias gs='git status'
