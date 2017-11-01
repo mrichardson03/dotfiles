@@ -62,9 +62,6 @@ if [ -f $brew_prefix/etc/bash_completion ]; then
   . $brew_prefix/etc/bash_completion
 fi
 
-# Python settings.
-export PYTHONPATH="/usr/local/lib/python2.7/site-packages"
-
 # Delete a given line number in the known_hosts file.
 knownrm() {
   re='^[0-9]+$'
@@ -75,6 +72,9 @@ knownrm() {
   fi
 }
 
+# Python settings.
+export PYTHONPATH="/usr/local/lib/python2.7/site-packages"
+
 # Virtualenvwrapper needs to use Homebrew installed Python.
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
 
@@ -82,7 +82,7 @@ export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
 source /usr/local/bin/virtualenvwrapper.sh
 
 # Require pip to be run in a virtualenv to avoid junking up the system Python.
-export PIP_REQUIRE_VIRTUALENV=true
+# export PIP_REQUIRE_VIRTUALENV=true
 
 # create commands to override pip restriction.
 # use `gpip` or `gpip3` to force installation of
