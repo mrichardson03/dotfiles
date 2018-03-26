@@ -72,6 +72,8 @@ knownrm() {
   fi
 }
 
+# Python setup from Brian Torres-Gil: https://medium.com/@briantorresgil/definitive-guide-to-python-on-mac-osx-65acd8d969d0
+
 # activate virtualenvwrapper
 source /usr/local/bin/virtualenvwrapper.sh
 
@@ -90,24 +92,4 @@ gpip3(){
 
 awsls () { 
   aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,State.Name,InstanceType,PrivateIpAddress,PublicIpAddress,Tags[?Key==`Name`].Value[]]' --output json | tr -d '\n[] "' | perl -pe 's/i-/\ni-/g' | tr ',' '\t' | sed -e 's/null/None/g' | grep '^i-' | column -t 
-}
-
-awsgettaggedinstances() {
-	aws ec2 describe-instances --filters $1 --query 'Reservations[].Instances[].[InstanceId]' --output text | tr '\n' ' '
-}
-
-awsstart() {
-	aws ec2 start-instances --instance-ids $(awsgettaggedinstances $1)
-}
-
-awsstop () {
-	aws ec2 stop-instances --instance-ids $(awsgettaggedinstances $1)
-}
-
-budapeststart() {
-	awsstart "Name=tag:Environment,Values=Budapest" 
-}
-
-budapeststop () {
-	awsstop "Name=tag:Environment,Values=Budapest"
 }
