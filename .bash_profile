@@ -17,6 +17,8 @@ alias ls='ls -GF'
 # Custom $PATH with extra locations.
 export PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
 
+export VAGRANT_DEFAULT_PROVIDER=vmware_desktop
+
 # Include bashrc file (if present).
 if [ -f ~/.bashrc ]
 then
@@ -25,8 +27,8 @@ fi
 
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
-alias unssh='ssh -o UserKnownHostsFile=/dev/null -o StrictKeyHostChecking=no'
-alias unscp='scp -o UserKnownHostsFile=/dev/null -o StrictKeyHostChecking=no'
+alias unssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+alias unscp='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
 # Git aliases.
 alias gs='git status'
@@ -62,9 +64,6 @@ if [ -f $brew_prefix/etc/bash_completion ]; then
   . $brew_prefix/etc/bash_completion
 fi
 
-# Python settings.
-export PYTHONPATH="/usr/local/lib/python2.7/site-packages"
-
 # Delete a given line number in the known_hosts file.
 knownrm() {
   re='^[0-9]+$'
@@ -72,5 +71,49 @@ knownrm() {
     echo "error: line number missing" >&2;
   else
     sed -i '' "$1d" ~/.ssh/known_hosts
+  fi
+}
+
+# Python setup from Brian Torres-Gil: https://medium.com/@briantorresgil/definitive-guide-to-python-on-mac-osx-65acd8d969d0
+
+# activate virtualenvwrapper
+source /usr/local/bin/virtualenvwrapper.sh
+
+# pip should only run if there is a virtualenv currently activated
+export PIP_REQUIRE_VIRTUALENV=true
+
+# create commands to override pip restriction.
+# use `gpip` or `gpip3` to force installation of
+# a package in the global python environment
+gpip(){
+   PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
+gpip3(){
+   PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
+}
+
+awsls () { 
+  aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,State.Name,InstanceType,PrivateIpAddress,PublicIpAddress,Tags[?Key==`Name`].Value[]]' --output json | tr -d '\n[] "' | perl -pe 's/i-/\ni-/g' | tr ',' '\t' | sed -e 's/null/None/g' | grep '^i-' | column -t 
+}
+
+awstagquery() {
+  aws ec2 describe-instances --filters "Name=tag:Environment,Values=$1" $2 --query 'Reservations[].Instances[].InstanceId' --output text
+}
+
+awsstart () {
+  aws ec2 start-instances --instance-ids `awstagquery $1 "Name=instance-state-name,Values=stopping,stopped"`
+}
+
+awsstop () {
+  aws ec2 stop-instances --instance-ids `awstagquery $1 "Name=instance-state-name,Values=pending,running"`
+}
+
+md2word () {
+  PANDOC_INSTALLED=$(pandoc --version >> /dev/null; echo $?)
+
+  if [ "0" == ${PANDOC_INSTALLED} ]; then
+    pandoc -o $2 -t docx -f markdown $1
+  else
+    echo "Pandoc is not installed.  Unable to convert document."
   fi
 }
