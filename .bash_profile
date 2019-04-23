@@ -19,6 +19,8 @@ export PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
 
 export VAGRANT_DEFAULT_PROVIDER=vmware_desktop
 
+export GOPATH=$HOME/Projects/go
+
 # Include bashrc file (if present).
 if [ -f ~/.bashrc ]
 then
