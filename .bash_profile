@@ -15,7 +15,7 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 alias ls='ls -GF'
 
 # Custom $PATH with extra locations.
-export PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
+export PATH="/usr/local/opt/terraform@0.11/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
 
 export VAGRANT_DEFAULT_PROVIDER=vmware_desktop
 
