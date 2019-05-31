@@ -95,19 +95,31 @@ gpip3(){
 }
 
 awsls () { 
-  aws ec2 describe-instances --query "Reservations[*].Instances[*].[Tags[?Key=='Name'] | [0].Value,Tags[?Key=='Environment'] | [0].Value,PublicIpAddress,InstanceType,State.Name]" --output table
+  aws ec2 describe-instances --query "Reservations[*].Instances[*].[Tags[?Key=='Name'] | [0].Value,Tags[?Key=='Environment'] | [0].Value,PublicIpAddress,InstanceId,InstanceType,State.Name]" --output table
 }
 
-awstagquery() {
+awsinstancename() {
+  aws ec2 describe-instances --filters "Name=tag:Name,Values=$1" $2 --query 'Reservations[].Instances[].InstanceId' --output text
+}
+
+awsenv() {
   aws ec2 describe-instances --filters "Name=tag:Environment,Values=$1" $2 --query 'Reservations[].Instances[].InstanceId' --output text
 }
 
 awsstart () {
-  aws ec2 start-instances --instance-ids `awstagquery $1 "Name=instance-state-name,Values=stopping,stopped"`
+  aws ec2 start-instances --instance-ids `awsinstancename $1 "Name=instance-state-name,Values=stopping,stopped"`
 }
 
 awsstop () {
-  aws ec2 stop-instances --instance-ids `awstagquery $1 "Name=instance-state-name,Values=pending,running"`
+  aws ec2 stop-instances --instance-ids `awsinstancename $1 "Name=instance-state-name,Values=pending,running"`
+}
+
+awsstartenv() {
+  aws ec2 start-instances --instance-ids `awsenv $1 "Name=instance-state-name,Values=stopping,stopped"`
+}
+
+awsstopenv() {
+  aws ec2 stop-instances --instance-ids `awsenv $1 "Name=instance-state-name,Values=pending,running"`
 }
 
 md2word () {

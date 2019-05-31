@@ -17,7 +17,8 @@
     "workbench.colorTheme": "GitHub Sharp",
 
     "[terraform]": {
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true
     },
 
     "[markdown]": {
