@@ -21,6 +21,12 @@
         "editor.formatOnSave": true
     },
 
+    "terraform.indexing": {
+        "enabled": false,
+        "liveIndexing": false,
+        "exclude": ["**/*"]
+    },
+
     "[markdown]": {
         "editor.wordWrap": "on",
         "editor.quickSuggestions": false
