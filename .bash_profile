@@ -15,8 +15,9 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 alias ls='ls -GF'
 
 # Custom $PATH with extra locations.
-export PATH="/usr/local/opt/terraform@0.11/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
 
+# Make Vagrant use Vmware by default.
 export VAGRANT_DEFAULT_PROVIDER=vmware_desktop
 
 export GOPATH=$HOME/Projects/go
@@ -26,8 +27,6 @@ if [ -f ~/.bashrc ]
 then
   source ~/.bashrc
 fi
-
-alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 alias unssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 alias unscp='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
@@ -78,9 +77,6 @@ knownrm() {
 
 # Python setup from Brian Torres-Gil: https://medium.com/@briantorresgil/definitive-guide-to-python-on-mac-osx-65acd8d969d0
 
-# activate virtualenvwrapper
-source /usr/local/bin/virtualenvwrapper.sh
-
 # pip should only run if there is a virtualenv currently activated
 export PIP_REQUIRE_VIRTUALENV=true
 
@@ -93,6 +89,8 @@ gpip(){
 gpip3(){
    PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
 }
+
+# AWS Functions
 
 awsls () { 
   aws ec2 describe-instances --query "Reservations[*].Instances[*].[Tags[?Key=='Name'] | [0].Value,Tags[?Key=='Environment'] | [0].Value,PublicIpAddress,InstanceId,InstanceType,State.Name]" --output table
@@ -120,14 +118,4 @@ awsstartenv() {
 
 awsstopenv() {
   aws ec2 stop-instances --instance-ids `awsenv $1 "Name=instance-state-name,Values=pending,running"`
-}
-
-md2word () {
-  PANDOC_INSTALLED=$(pandoc --version >> /dev/null; echo $?)
-
-  if [ "0" == ${PANDOC_INSTALLED} ]; then
-    pandoc -o $2 -t docx -f markdown $1
-  else
-    echo "Pandoc is not installed.  Unable to convert document."
-  fi
 }
