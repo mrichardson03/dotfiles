@@ -20,6 +20,9 @@ export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
 # Make Vagrant use Vmware by default.
 export VAGRANT_DEFAULT_PROVIDER=vmware_desktop
 
+# Put all Vagrant VMs in one directory for easy excluding from Time Machine.
+export VAGRANT_VMWARE_CLONE_DIRECTORY=$HOME/.vagrantvms
+
 export GOPATH=$HOME/Projects/go
 
 # Include bashrc file (if present).
