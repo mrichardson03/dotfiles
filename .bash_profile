@@ -14,8 +14,9 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 
 alias ls='ls -GF'
 
-# Custom $PATH with extra locations.
-export PATH="/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
+# Custom $PATH with extra locations.  Add Homebrew and Homebrew installed Python 3 to path to override OS
+# Python 2.7 on macOS.
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/python/libexec/bin:$HOME/bin:$PATH"
 
 # Make Vagrant use Vmware by default.
 export VAGRANT_DEFAULT_PROVIDER=vmware_desktop
@@ -76,21 +77,6 @@ knownrm() {
   else
     sed -i '' "$1d" ~/.ssh/known_hosts
   fi
-}
-
-# Python setup from Brian Torres-Gil: https://medium.com/@briantorresgil/definitive-guide-to-python-on-mac-osx-65acd8d969d0
-
-# pip should only run if there is a virtualenv currently activated
-export PIP_REQUIRE_VIRTUALENV=true
-
-# create commands to override pip restriction.
-# use `gpip` or `gpip3` to force installation of
-# a package in the global python environment
-gpip(){
-   PIP_REQUIRE_VIRTUALENV="" pip "$@"
-}
-gpip3(){
-   PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
 }
 
 # AWS Functions
