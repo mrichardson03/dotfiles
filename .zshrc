@@ -10,7 +10,7 @@ export CLICOLOR=1
 export CLICOLOR_FORCE=1
 
 # Nice looking prompt.
-export PS1="%F{green} %*%F %3~ %F{white}$ "
+export PS1="%F{green} %*%F{blue} %3~ %F{white}$ "
 
 # Custom path with extra locations.  Add Homebrew and Homebrew installed Python 3 to path to override OS
 # Python 2.7 on macOS.
