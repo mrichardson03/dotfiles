@@ -14,16 +14,23 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 
 alias ls='ls -GF'
 
-# Custom $PATH with extra locations.
-export PATH=/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH
+# Custom $PATH with extra locations.  Add Homebrew and Homebrew installed Python 3 to path to override OS
+# Python 2.7 on macOS.
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/opt/python/libexec/bin:$HOME/bin:$PATH"
+
+# Make Vagrant use Vmware by default.
+export VAGRANT_DEFAULT_PROVIDER=vmware_desktop
+
+# Put all Vagrant VMs in one directory for easy excluding from Time Machine.
+export VAGRANT_VMWARE_CLONE_DIRECTORY=$HOME/.vagrantvms
+
+export GOPATH=$HOME/Projects/go
 
 # Include bashrc file (if present).
 if [ -f ~/.bashrc ]
 then
   source ~/.bashrc
 fi
-
-alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 alias unssh='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 alias unscp='scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
@@ -72,6 +79,7 @@ knownrm() {
   fi
 }
 
+<<<<<<< HEAD
 # Python setup from Brian Torres-Gil: https://medium.com/@briantorresgil/definitive-guide-to-python-on-mac-osx-65acd8d969d0
 
 # activate virtualenvwrapper
@@ -103,3 +111,34 @@ md2word () {
     echo "Pandoc is not installed.  Unable to convert document."
   fi
 }
+=======
+# AWS Functions
+
+awsls () { 
+  aws ec2 describe-instances --query "Reservations[*].Instances[*].[Tags[?Key=='Name'] | [0].Value,Tags[?Key=='Environment'] | [0].Value,PublicIpAddress,InstanceId,InstanceType,State.Name]" --output table
+}
+
+awsinstancename() {
+  aws ec2 describe-instances --filters "Name=tag:Name,Values=$1" $2 --query 'Reservations[].Instances[].InstanceId' --output text
+}
+
+awsenv() {
+  aws ec2 describe-instances --filters "Name=tag:Environment,Values=$1" $2 --query 'Reservations[].Instances[].InstanceId' --output text
+}
+
+awsstart () {
+  aws ec2 start-instances --instance-ids `awsinstancename $1 "Name=instance-state-name,Values=stopping,stopped"`
+}
+
+awsstop () {
+  aws ec2 stop-instances --instance-ids `awsinstancename $1 "Name=instance-state-name,Values=pending,running"`
+}
+
+awsstartenv() {
+  aws ec2 start-instances --instance-ids `awsenv $1 "Name=instance-state-name,Values=stopping,stopped"`
+}
+
+awsstopenv() {
+  aws ec2 stop-instances --instance-ids `awsenv $1 "Name=instance-state-name,Values=pending,running"`
+}
+>>>>>>> d063c189362dd915afce5c3a5f2c98df0dad0976
