@@ -1,0 +1,24 @@
+[user]
+	email = mrichardson03@gmail.com
+	name = Michael Richardson
+[core]
+    excludesfile = ~/.gitignore
+    autocrlf = input
+[color]
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
+[alias]
+    c = commit
+    ca = commit -a
+    cm = commit -m
+    cam = commit -am
+    d = diff
+    dc = diff --cached
+    l = log --graph --abbrev-commit
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
