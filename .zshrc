@@ -16,6 +16,9 @@ export PS1="%F{green} %*%F{blue} %3~ %F{white}$ "
 # Python 2.7 on macOS.
 export PATH="/usr/local/opt/python/libexec/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
 
+# Enable plugins.
+plugins=(git brew history kubectl)
+
 # Turn on shell autocomplete.
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
