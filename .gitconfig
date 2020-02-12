@@ -1,9 +1,10 @@
 [user]
-	email = mrichardson03@gmail.com
-	name = Michael Richardson
+    email = mrichardson03@gmail.com
+    name = Michael Richardson
 [core]
     excludesfile = ~/.gitignore
     autocrlf = input
+    editor = "code --wait"
 [color]
     branch = auto
     diff = auto
@@ -17,8 +18,4 @@
     d = diff
     dc = diff --cached
     l = log --graph --abbrev-commit
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f "
