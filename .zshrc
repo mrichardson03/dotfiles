@@ -32,6 +32,9 @@ fi
 # Aliases                                                                     #
 ###############################################################################
 
+# Alias Docker to Docker Desktop for Windows.
+alias docker="docker.exe"
+
 alias unssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias unscp="scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
