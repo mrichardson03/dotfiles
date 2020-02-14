@@ -12,9 +12,8 @@ export CLICOLOR_FORCE=1
 # Nice looking prompt.
 export PS1="%F{green}%*%F{blue} %3~ %F{white}$ "
 
-# Custom path with extra locations.  Add Homebrew and Homebrew installed Python 3 to path to override OS
-# Python 2.7 on macOS.
-export PATH="/usr/local/opt/python/libexec/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
+# Custom path with extra locations.
+export PATH="$HOME/bin:$PATH"
 
 # Enable plugins.
 plugins=(git brew history kubectl)
@@ -34,6 +33,10 @@ fi
 
 # Alias Docker to Docker Desktop for Windows.
 alias docker="docker.exe"
+
+# Alias python to Python 3.
+alias python="/usr/bin/python3"
+alias pip="/usr/bin/pip3"
 
 alias unssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias unscp="scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
