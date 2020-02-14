@@ -10,7 +10,7 @@ export CLICOLOR=1
 export CLICOLOR_FORCE=1
 
 # Nice looking prompt.
-export PS1="%F{green} %*%F{blue} %3~ %F{white}$ "
+export PS1="%F{green}%*%F{blue} %3~ %F{white}$ "
 
 # Custom path with extra locations.  Add Homebrew and Homebrew installed Python 3 to path to override OS
 # Python 2.7 on macOS.
@@ -23,11 +23,14 @@ plugins=(git brew history kubectl)
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
+if [[ -x /usr/bin/dircolors ]] ; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls="ls --color=auto -GF"
+fi
+
 ###############################################################################
 # Aliases                                                                     #
 ###############################################################################
-
-alias ls="ls -GF"
 
 alias unssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias unscp="scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
