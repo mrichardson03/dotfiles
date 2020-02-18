@@ -4,6 +4,11 @@
 #
 #
 
+# Pull in local shell config if it's present.
+if [[ -f $HOME/.zshrc.local ]]; then
+  source $HOME/.zshrc.local
+fi
+
 # Enable colors on the cli.
 unset LSCOLORS
 export CLICOLOR=1
