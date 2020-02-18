@@ -1,0 +1,4 @@
+# Pull VMware Fusion VMs from iMac.
+vmpull() {
+    rsync -av --progress --delete imac:"/Users/michaelr/Virtual\ Machines.localized/" $HOME/Virtual\ Machines.localized/
+}
