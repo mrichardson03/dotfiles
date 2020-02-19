@@ -1,5 +1,5 @@
 # Back up VMware Fusion VMs to external drive (that then gets mirrored to Time Machine).
 vmbackup() {
     osascript -e 'quit app "VMware Fusion"'
-    /usr/local/bin/rsync -av --delete --progress /Users/michaelr/Virtual\\ Machines.localized/ /Volumes/Storage/VM\\ Backups
+    /usr/local/bin/rsync -av --delete --progress /Users/michaelr/Virtual\ Machines.localized/ /Volumes/Storage/VM\ Backups
 }
