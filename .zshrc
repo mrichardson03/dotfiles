@@ -38,6 +38,9 @@ alias ls="ls -GF"
 alias unssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias unscp="scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
+alias commit-types="cat ~/.dotfiles/commit-types"
+alias ct="cat ~/.dotfiles/commit-types"
+
 ###############################################################################
 # Vagrant / Packer                                                            #
 ###############################################################################
