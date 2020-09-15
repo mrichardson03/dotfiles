@@ -87,6 +87,18 @@ function gsync() {
  git push origin "$1"
 }
 
+###############################################################################
+## AWS                                                                       ##
+###############################################################################
+
+# Set default AWS profile.
+export AWS_PROFILE=pan-lab
+
+# Get creds as environment variables.
+awscreds() {
+    eval "$(aws2-wrap --export)"
+}
+
 # List AWS instances.
 awsls () { 
   aws ec2 describe-instances --query "Reservations[*].Instances[*].[Tags[?Key=='Name'] | [0].Value,Tags[?Key=='Environment'] | [0].Value,PublicIpAddress,InstanceId,InstanceType,State.Name]" --output table
