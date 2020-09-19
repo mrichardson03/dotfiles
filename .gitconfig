@@ -28,3 +28,5 @@
     process = git-lfs filter-process
 [fetch]
     prune = true
+[commit]
+    template = ~/.dotfiles/gitmessage
