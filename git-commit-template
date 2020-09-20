@@ -1,5 +1,9 @@
-# Short commit description (50 characters)
-fix: Short description
+fix: Short description (50 characters)
+
+# Longer description would go here.  If there was a breaking change, start this section
+# with "BREAKING CHANGE:"
+
+# Fixes <issue number>
 
 # Commit Types:
 # feat - A new feature
@@ -13,10 +17,3 @@ fix: Short description
 # ci - Changes to our CI configuration files and scripts
 # chore - Other changes that don't modify src or test files
 # revert - Reverts a previous commit
-
-# Longer description would go here.  If there was a breaking change, start this section
-# with "BREAKING CHANGE:"
-
-# Reference any issue addressed like this:
-# Fixes <issue number>
-
