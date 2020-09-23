@@ -87,13 +87,14 @@ function gsync() {
  git push origin "$1"
 }
 
+# Pulled from https://about.gitlab.com/blog/2020/01/30/simple-trick-for-smaller-screenshots/
 function pngshrink() {
   if [[ ! "$1" ]] ; then
     echo "You must supply a filename."
     return 0
   fi
 
-  pngquant 256 --skip-if-larger --strip --ext=.png --force "$1"
+  pngquant 64 --skip-if-larger --strip --ext=.png --force "$1"
   zopflipng -y "$1" "$1"
 }
 
