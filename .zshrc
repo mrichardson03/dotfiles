@@ -87,6 +87,16 @@ function gsync() {
  git push origin "$1"
 }
 
+function pngshrink() {
+  if [[ ! "$1" ]] ; then
+    echo "You must supply a filename."
+    return 0
+  fi
+
+  pngquant 256 --skip-if-larger --strip --ext=.png --force "$1"
+  zopflipng -y "$1" "$1"
+}
+
 ###############################################################################
 ## AWS                                                                       ##
 ###############################################################################
