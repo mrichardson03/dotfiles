@@ -59,6 +59,12 @@ gpip3(){
    PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
 }
 
+# Add pyenv to use Python versions that aren't in Homebrew.
+eval "$(pyenv init -)"
+
+# Always create pipenv virtualenvs in project.
+export PIPENV_VENV_IN_PROJECT=1
+
 ###############################################################################
 # Vagrant / Packer                                                            #
 ###############################################################################
