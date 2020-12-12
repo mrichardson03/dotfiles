@@ -60,7 +60,9 @@ gpip3(){
 }
 
 # Add pyenv to use Python versions that aren't in Homebrew.
-eval "$(pyenv init -)"
+if [[ -v pyenv ]]; then
+  eval "$(pyenv init -)"
+fi
 
 # Always create pipenv virtualenvs in project.
 export PIPENV_VENV_IN_PROJECT=1
