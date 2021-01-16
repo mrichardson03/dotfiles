@@ -31,7 +31,6 @@ brew "pyenv"
 brew "python@3.8"
 brew "rclone"
 brew "rsync"
-brew "serverless"
 brew "speedtest-cli"
 brew "ssh-copy-id"
 brew "terraform"
@@ -54,7 +53,6 @@ cask "google-cloud-sdk"
 cask "hazel"
 cask "karabiner-elements"
 cask "postman"
-cask "powershell"
 cask "slack"
 cask "spotify"
 cask "textexpander"
@@ -63,6 +61,7 @@ cask "vagrant"
 cask "vagrant-vmware-utility"
 cask "visual-studio-code"
 cask "vmware-fusion"
+mas "Amphetamine", id: 937984704
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
