@@ -19,8 +19,14 @@ export PS1="%F{green} %*%F{blue} %3~ %F{white}$ "
 
 # Custom path with extra locations.
 #   - Add ~/Library/Python/3.8/bin for stuff installed via `pip install --user`.
-#   - Add Homebrew and Homebrew installed Python 3.8 to path to override OS Python on macOS.
-export PATH="$HOME/Library/Python/3.8/bin:/usr/local/opt/python@3.8/libexec/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
+#   - Correct Homebrew path on M1 or Intel.
+ARCH=$(/usr/bin/arch)
+if [[ $ARCH == "arm64" ]]; then
+    PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+else
+    PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+fi
+export PATH="$HOME/Library/Python/3.8/bin:$HOME/bin:$PATH"
 
 # Enable plugins.
 plugins=(git brew history kubectl)
