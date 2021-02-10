@@ -59,10 +59,10 @@ export PIP_REQUIRE_VIRTUALENV=true
 # a package in the global python environment
 # Never do this! It is just an escape hatch.
 gpip(){
-   PIP_REQUIRE_VIRTUALENV="" pip "$@"
+   PIP_REQUIRE_VIRTUALENV="" /usr/bin/pip "$@"
 }
 gpip3(){
-   PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
+   PIP_REQUIRE_VIRTUALENV="" /usr/bin/pip3 "$@"
 }
 
 # Add pyenv to use Python versions that aren't in Homebrew.
