@@ -170,3 +170,10 @@ awsstart () {
 awsstop () {
   aws ec2 stop-instances --instance-ids `awsinstancename $1 "Name=instance-state-name,Values=pending,running"`
 }
+
+###############################################################################
+## Ansible                                                                   ##
+###############################################################################
+
+# Work around https://github.com/ansible/ansible/issues/32554
+export no_proxy=*
