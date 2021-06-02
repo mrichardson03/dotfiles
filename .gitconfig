@@ -30,3 +30,6 @@
     prune = true
 [commit]
     template = ~/.dotfiles/git-commit-template
+[init]
+	defaultBranch = main
+	templateDir = /Users/michaelr/.git-template
