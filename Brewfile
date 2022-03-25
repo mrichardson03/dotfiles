@@ -7,10 +7,9 @@ tap "homebrew/core"
 brew "readline"
 brew "sqlite"
 brew "xz"
-brew "ansible"
 brew "ansible-lint"
 brew "awscli"
-brew "checkov"
+brew "azure-cli"
 brew "coreutils"
 brew "figlet"
 brew "gh"
@@ -51,15 +50,27 @@ cask "google-chrome"
 cask "google-cloud-sdk"
 cask "hazel"
 cask "keyboard-maestro"
+cask "microsoft-auto-update"
+cask "microsoft-excel"
+cask "microsoft-outlook"
+cask "microsoft-powerpoint"
+cask "microsoft-word"
 cask "notion"
+cask "onedrive"
 cask "postman"
 cask "slack"
 cask "transmit"
-cask "visual-studio-code"
-cask "vmware-fusion"
 cask "vagrant"
 cask "vagrant-vmware-utility"
+cask "visual-studio-code"
+cask "vmware-fusion"
+cask "whatsapp"
 mas "Amphetamine", id: 937984704
+mas "GarageBand", id: 682658836
 mas "iA Writer", id: 775737590
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Moom", id: 419330170
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
