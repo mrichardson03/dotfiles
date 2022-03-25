@@ -17,7 +17,16 @@ export CLICOLOR_FORCE=1
 # Nice looking prompt.
 export PS1="%F{green} %*%F{blue} %3~ %F{white}$ "
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+###############################################################################
+# Homebrew                                                                    #
+###############################################################################
+
+ARCH=$(/usr/bin/arch)
+if [[ $ARCH == "arm64" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
 
 # Custom path with extra locations.
 #   - Add ~/Library/Python/3.8/bin for stuff installed via `pip install --user`.
