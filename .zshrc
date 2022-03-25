@@ -123,16 +123,7 @@ function unfinished () {
 ###############################################################################
 
 # Set default AWS profile.
-export AWS_PROFILE=pan-lab
-
-awslogin() {
-  aws sso login --profile=$AWS_PROFILE
-}
-
-# Get creds as environment variables.
-awscreds() {
-    eval "$(aws2-wrap --export)"
-}
+export AWS_PROFILE=rblabs
 
 # List AWS instances.
 awsls () { 
