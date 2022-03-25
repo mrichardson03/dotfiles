@@ -46,20 +46,6 @@ alias ct="cat ~/.dotfiles/commit-types"
 # Python                                                                      #
 ###############################################################################
 
-# pip should only run if there is a virtualenv currently activated
-export PIP_REQUIRE_VIRTUALENV=true
- 
-# commands to override pip restriction above.
-# use `gpip` or `gpip3` to force installation of
-# a package in the global python environment
-# Never do this! It is just an escape hatch.
-gpip(){
-   PIP_REQUIRE_VIRTUALENV="" /usr/bin/pip "$@"
-}
-gpip3(){
-   PIP_REQUIRE_VIRTUALENV="" /usr/bin/pip3 "$@"
-}
-
 # Add pyenv to use Python versions that aren't in Homebrew.
 if [[ -v pyenv ]]; then
   eval "$(pyenv init -)"
