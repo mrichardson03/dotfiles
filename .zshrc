@@ -120,13 +120,6 @@ function pngshrink() {
   zopflipng -y "$1" "$1"
 }
 
-# Find any iA Writer documents with unfinished checkboxes.
-function unfinished () {
-    pushd ~/Library/Mobile\ Documents/27N4MQEA55\~pro\~writer/Documents > /dev/null
-    grep "\[ \]" *.md
-    popd > /dev/null
-}
-
 ###############################################################################
 ## AWS                                                                       ##
 ###############################################################################
