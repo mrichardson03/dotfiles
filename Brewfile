@@ -46,9 +46,11 @@ cask "1password"
 cask "bettertouchtool"
 cask "daisydisk"
 cask "docker"
+cask "font-ia-writer-duo"
+cask "font-ia-writer-duospace"
+cask "font-ia-writer-mono"
 cask "font-jetbrains-mono"
 cask "font-kumbh-sans"
-cask "fujitsu-scansnap-home"
 cask "google-chrome"
 cask "google-cloud-sdk"
 cask "hazel"
@@ -71,11 +73,8 @@ cask "visual-studio-code"
 cask "vmware-fusion"
 cask "whatsapp"
 mas "Amphetamine", id: 937984704
-mas "GarageBand", id: 682658836
 mas "iA Writer", id: 775737590
-mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
 mas "Microsoft Remote Desktop", id: 1295203466
 mas "Moom", id: 419330170
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
+mas "Things", id: 904280696
+
