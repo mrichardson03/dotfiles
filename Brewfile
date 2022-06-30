@@ -60,6 +60,7 @@ cask "microsoft-excel"
 cask "microsoft-outlook"
 cask "microsoft-powerpoint"
 cask "microsoft-word"
+cask "moom"
 cask "notion"
 cask "obsidian"
 cask "onedrive"
@@ -72,9 +73,3 @@ cask "vagrant-vmware-utility"
 cask "visual-studio-code"
 cask "vmware-fusion"
 cask "whatsapp"
-mas "Amphetamine", id: 937984704
-mas "iA Writer", id: 775737590
-mas "Microsoft Remote Desktop", id: 1295203466
-mas "Moom", id: 419330170
-mas "Things", id: 904280696
-
