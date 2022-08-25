@@ -9,4 +9,6 @@ Link files from this directory into $HOME.  That's it.
 
 ## Homebrew
 
-Packages installed from Homebrew are listed in `Brewfile`.  These can be installed using `brew bundle`.
+Software installs are managed using [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle).  Personal and work
+setups are located in `brew/personal` and `brew/work`.  Software can be installed using `brew bundle install`, and
+cleanup done with `brew bundle cleanup`.
