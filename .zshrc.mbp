@@ -1,2 +1,1 @@
-# Redirect wiz-cli to test tenant.
-export WIZ_ENV=test
+alias wizcli-auth='wizcli auth --id `op read "op://Wiz.io/ac4gagwmyk5ju4ccc6me64fdpm/wizcli/client_id"` --secret `op read "op://Wiz.io/ac4gagwmyk5ju4ccc6me64fdpm/wizcli/client_secret"`'
