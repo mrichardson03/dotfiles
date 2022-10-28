@@ -1,1 +1,10 @@
-alias wizcli-auth='wizcli auth --id `op read "op://Wiz.io/ac4gagwmyk5ju4ccc6me64fdpm/wizcli/client_id"` --secret `op read "op://Wiz.io/ac4gagwmyk5ju4ccc6me64fdpm/wizcli/client_secret"`'
+# Avoid system and display sleep for presentations.
+alias nosleep="caffeinate -u -t 3600"
+
+# Authenticate wizcli using service account credentials stored in 1Poassword.
+wizcli-auth() {
+    export WIZ_CLIENT_ID=`op read "op://Wiz.io/ac4gagwmyk5ju4ccc6me64fdpm/wizcli/client_id"`
+    export WIZ_CLIENT_SECRET=`op read "op://Wiz.io/ac4gagwmyk5ju4ccc6me64fdpm/wizcli/client_secret"`
+
+    wizcli auth --id $WIZ_CLIENT_ID --secret $WIZ_CLIENT_SECRET
+}
