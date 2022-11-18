@@ -1,10 +1,36 @@
 # Avoid system and display sleep for presentations.
 alias nosleep="caffeinate -u -t 3600"
 
-# Authenticate wizcli using service account credentials stored in 1Poassword.
+# Authenticate tools using credentials stored in 1Password.
+# Docs: https://developer.1password.com/docs/cli/secrets-environment-variables
+
 wizcli-auth() {
-    export WIZ_CLIENT_ID=`op read "op://Wiz.io/ac4gagwmyk5ju4ccc6me64fdpm/wizcli/client_id"`
-    export WIZ_CLIENT_SECRET=`op read "op://Wiz.io/ac4gagwmyk5ju4ccc6me64fdpm/wizcli/client_secret"`
+    # wizcli doesn't read environment variables, it needs them specified on the
+    # auth call itself.
+    WIZ_CLIENT_ID=`op read "op://Wiz.io/ac4gagwmyk5ju4ccc6me64fdpm/wizcli/client_id"`
+    WIZ_CLIENT_SECRET=`op read "op://Wiz.io/ac4gagwmyk5ju4ccc6me64fdpm/wizcli/client_secret"`
 
     wizcli auth --id $WIZ_CLIENT_ID --secret $WIZ_CLIENT_SECRET
+
+    # Cleanup after authenticating.
+    unset WIZ_CLIENT_ID WIZ_CLIENT_SECRET
+}
+
+gh-token() {
+    # Populate environment variable with secret reference.
+    export GITHUB_TOKEN="op://Wiz.io/uv4ymckpfnbwbapwt72ekezhh4/personal_access_token"
+
+    alias gh="op run -- gh"
+}
+
+aws-prod() {
+    # Populate environment variables with secret references.
+    export AWS_ACCESS_KEY_ID="op://Wiz.io/yxztvwpajwhkeu42bm55wp6xxi/aws_access_key_id"
+    export AWS_SECRET_ACCESS_KEY="op://Wiz.io/yxztvwpajwhkeu42bm55wp6xxi/aws_secret_access_key"
+
+    # Alias AWS CLI and associated tools.
+    alias aws="op run -- aws"
+    alias terraform="op run -- terraform"
+    alias eksctl="op run -- eksctl"
+    alias kubectl="op run -- kubectl"
 }
