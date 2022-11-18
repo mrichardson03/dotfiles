@@ -121,38 +121,6 @@ function pngshrink() {
 }
 
 ###############################################################################
-## AWS                                                                       ##
-###############################################################################
-
-# Set default AWS profile.
-export AWS_PROFILE=rblabs
-
-# List AWS instances.
-awsls () { 
-  aws ec2 describe-instances --query "Reservations[*].Instances[*].[Tags[?Key=='Name'] | [0].Value,Tags[?Key=='Environment'] | [0].Value,PublicIpAddress,InstanceId,InstanceType,State.Name]" --output table
-}
-
-# Get an AWS instance by name.
-awsinstancename() {
-  aws ec2 describe-instances --filters "Name=tag:Name,Values=$1" $2 --query 'Reservations[].Instances[].InstanceId' --output text
-}
-
-# Get all AWS instances tagged with a specific Environment tag.
-awsenv() {
-  aws ec2 describe-instances --filters "Name=tag:Environment,Values=$1" $2 --query 'Reservations[].Instances[].InstanceId' --output text
-}
-
-# Start an AWS instance by name.
-awsstart () {
-  aws ec2 start-instances --instance-ids `awsinstancename $1 "Name=instance-state-name,Values=stopping,stopped"`
-}
-
-# Stop an AWS instance by name.
-awsstop () {
-  aws ec2 stop-instances --instance-ids `awsinstancename $1 "Name=instance-state-name,Values=pending,running"`
-}
-
-###############################################################################
 ## Ansible                                                                   ##
 ###############################################################################
 
