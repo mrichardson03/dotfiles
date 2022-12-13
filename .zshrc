@@ -87,13 +87,13 @@ export PACKER_CACHE_DIR=$HOME/.packer_cache
 # ZSH Functions                                                               #
 ###############################################################################
 
-# Delete a given line number in the known_hosts file.
+# Remove all host keys for a given IP address.
 knownrm() {
-  re='^[0-9]+$'
+  re='^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$'
   if ! [[ $1 =~ $re ]] ; then
-    echo "error: line number missing" >&2;
+    echo "error: ip address missing" >&2;
   else
-    sed -i '' "$1d" ~/.ssh/known_hosts
+    sed -i '' -e "/$1/d" ~/.ssh/known_hosts
   fi
 }
 
