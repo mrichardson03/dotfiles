@@ -5,7 +5,7 @@ Mainly used with macOS machines.
 
 ## Shell Setup
 
-Link files from this directory into $HOME.  That's it.
+Link files from this directory into $HOME, and link the `bin` directory to $HOME/bin.  That's it.
 
 ## Homebrew
 
