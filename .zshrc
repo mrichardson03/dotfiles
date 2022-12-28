@@ -17,6 +17,9 @@ export CLICOLOR_FORCE=1
 # Nice looking prompt.
 export PS1="%F{green} %*%F{blue} %3~ %F{white}$ "
 
+# Use direnv to load per directory environment variables.
+eval "$(direnv hook zsh)"
+
 ###############################################################################
 # 1Password                                                                   #
 ###############################################################################

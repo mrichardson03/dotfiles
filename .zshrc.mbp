@@ -22,15 +22,3 @@ gh-token() {
 
     alias gh="op run -- gh"
 }
-
-aws-prod() {
-    # Populate environment variables with secret references.
-    export AWS_ACCESS_KEY_ID="op://Wiz.io/yxztvwpajwhkeu42bm55wp6xxi/aws_access_key_id"
-    export AWS_SECRET_ACCESS_KEY="op://Wiz.io/yxztvwpajwhkeu42bm55wp6xxi/aws_secret_access_key"
-
-    # Alias AWS CLI and associated tools.
-    alias aws="op run -- aws"
-    alias terraform="op run -- terraform"
-    alias eksctl="op run -- eksctl"
-    alias kubectl="op run -- kubectl"
-}
