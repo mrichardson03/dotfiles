@@ -17,9 +17,6 @@ export CLICOLOR_FORCE=1
 # Nice looking prompt.
 export PS1="%F{green} %*%F{blue} %3~ %F{white}$ "
 
-# Use direnv to load per directory environment variables.
-eval "$(direnv hook zsh)"
-
 ###############################################################################
 # 1Password                                                                   #
 ###############################################################################
@@ -60,6 +57,13 @@ alias unscp="scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
 alias commit-types="cat ~/.dotfiles/commit-types"
 alias ct="cat ~/.dotfiles/commit-types"
+
+###############################################################################
+# direnv                                                                      #
+###############################################################################
+
+# Use direnv to load per directory environment variables.
+eval "$(direnv hook zsh)"
 
 ###############################################################################
 # Python                                                                      #
