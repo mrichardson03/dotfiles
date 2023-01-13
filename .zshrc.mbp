@@ -22,3 +22,15 @@ gh-token() {
 
     alias gh="op run -- gh"
 }
+
+terraform-rm() {
+    find . -type d -iname '.terraform' | xargs rm -rf
+}
+
+terraform-init-root() {
+    find . -iname 'versions.tf' \! -path '*modules*' -exec dirname {} \; | xargs -L 1 bash -c 'cd "$0" && pwd && terraform init -upgrade'
+}
+
+terraform-lock-root() {
+    find . -iname 'versions.tf' \! -path '*modules*' -exec dirname {} \; | xargs -L 1 bash -c 'cd "$0" && pwd && terraform providers lock -platform=darwin_arm64 -platform=linux_amd64'
+}
