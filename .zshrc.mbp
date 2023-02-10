@@ -1,6 +1,14 @@
 # Avoid system and display sleep for presentations.
 alias nosleep="caffeinate -u -t 3600"
 
+# Pull latest version of wizcli.
+wizcli-update() {
+    curl -so $HOME/bin/wizcli https://wizcli.app.wiz.io/latest/wizcli-mac
+    chmod +x $HOME/bin/wizcli
+
+    $HOME/bin/wizcli version
+}
+
 # Authenticate tools using credentials stored in 1Password.
 # Docs: https://developer.1password.com/docs/cli/secrets-environment-variables
 
