@@ -70,7 +70,6 @@ cask "microsoft-powerpoint"
 cask "microsoft-word"
 cask "moom"
 cask "obsidian"
-cask "textexpander"
 cask "transmit"
 cask "visual-studio-code"
 
