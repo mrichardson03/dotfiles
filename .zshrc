@@ -39,10 +39,13 @@ fi
 #   - Add ~/Library/Python/3.8/bin for stuff installed via `pip install --user`.
 export PATH="$HOME/Library/Python/3.8/bin:$HOME/bin:$PATH"
 
-# Enable plugins.
-plugins=(git brew history kubectl)
+################################################################################
+# ZSH Auto-Completion                                                          #
+################################################################################
 
-# Turn on shell autocomplete.
+# Load auto-completions from brew site-functions directory.
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
 
