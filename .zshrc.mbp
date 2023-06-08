@@ -17,6 +17,7 @@ wizcli-update() {
 # Authenticate tools using credentials stored in 1Password.
 # Docs: https://developer.1password.com/docs/cli/secrets-environment-variables
 
+# Authenticate wizcli.
 wizcli-auth() {
     # wizcli doesn't read environment variables, it needs them specified on the
     # auth call itself.
@@ -28,6 +29,10 @@ wizcli-auth() {
     # Cleanup after authenticating.
     unset WIZ_CLIENT_ID WIZ_CLIENT_SECRET
 }
+
+# Authenticate sops with stored key.
+export SOPS_AGE_KEY="op://Wiz.io/5zqhqjufaojojvbgzzyf2ma4ve/secret_key"
+alias sops="op run -- sops"
 
 terraform-rm() {
     find . -type d -iname '.terraform' | xargs rm -rf
