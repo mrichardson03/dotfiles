@@ -29,13 +29,6 @@ wizcli-auth() {
     unset WIZ_CLIENT_ID WIZ_CLIENT_SECRET
 }
 
-gh-token() {
-    # Populate environment variable with secret reference.
-    export GITHUB_TOKEN="op://Wiz.io/uv4ymckpfnbwbapwt72ekezhh4/Wiz Laptop PAT"
-
-    alias gh="op run -- gh"
-}
-
 terraform-rm() {
     find . -type d -iname '.terraform' | xargs rm -rf
 }
