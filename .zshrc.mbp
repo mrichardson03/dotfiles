@@ -8,7 +8,7 @@ alias nosleep="caffeinate -u -t 3600"
 
 # Pull latest version of wizcli.
 wizcli-update() {
-    curl -so $HOME/bin/wizcli https://wizcli.app.wiz.io/latest/wizcli-mac
+    curl -so $HOME/bin/wizcli https://wizcli.app.wiz.io/latest/wizcli-darwin-arm64
     chmod +x $HOME/bin/wizcli
 
     $HOME/bin/wizcli version
