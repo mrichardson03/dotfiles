@@ -21,8 +21,8 @@ wizcli-update() {
 wizcli-auth() {
     # wizcli doesn't read environment variables, it needs them specified on the
     # auth call itself.
-    WIZ_CLIENT_ID=`op read "op://Wiz.io/qfuoijuho4c35uomulbiyz53dq/wizcli/client_id"`
-    WIZ_CLIENT_SECRET=`op read "op://Wiz.io/qfuoijuho4c35uomulbiyz53dq/wizcli/client_secret"`
+    WIZ_CLIENT_ID=`op read "op://Wiz.io/jt4divonxxnnxgauuvr4iifrvm/username"`
+    WIZ_CLIENT_SECRET=`op read "op://Wiz.io/jt4divonxxnnxgauuvr4iifrvm/credential"`
 
     wizcli auth --id $WIZ_CLIENT_ID --secret $WIZ_CLIENT_SECRET
 
