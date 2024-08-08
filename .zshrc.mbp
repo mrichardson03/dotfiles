@@ -6,6 +6,9 @@ source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completi
 # Avoid system and display sleep for presentations.
 alias nosleep="caffeinate -u -t 3600"
 
+# Use 1Password CLI user account.
+export OP_ACCOUNT=royalbluff.1password.com
+
 # Pull latest version of wizcli.
 wizcli-update() {
     curl -so $HOME/bin/wizcli https://wizcli.app.wiz.io/latest/wizcli-darwin-arm64
@@ -21,27 +24,11 @@ wizcli-update() {
 wizcli-auth() {
     # wizcli doesn't read environment variables, it needs them specified on the
     # auth call itself.
-    WIZ_CLIENT_ID=`op read "op://Wiz.io/csaprod Michael-Richardson-SE-wizcli/username"`
-    WIZ_CLIENT_SECRET=`op read "op://Wiz.io/csaprod Michael-Richardson-SE-wizcli/credential"`
+    WIZ_CLIENT_ID=`op read "op://qwfrxxe3fbgabc3z3g5exaxy3i/m6ga4zjldekwajq6xho5nfa3iu/username"`
+    WIZ_CLIENT_SECRET=`op read "op://qwfrxxe3fbgabc3z3g5exaxy3i/m6ga4zjldekwajq6xho5nfa3iu/credential"`
 
     wizcli auth --id $WIZ_CLIENT_ID --secret $WIZ_CLIENT_SECRET
 
     # Cleanup after authenticating.
     unset WIZ_CLIENT_ID WIZ_CLIENT_SECRET
-}
-
-# Authenticate sops with stored key.
-export SOPS_AGE_KEY="op://Wiz.io/5zqhqjufaojojvbgzzyf2ma4ve/secret_key"
-alias sops="op run -- sops"
-
-terraform-rm() {
-    find . -type d -iname '.terraform' | xargs rm -rf
-}
-
-terraform-init-root() {
-    find . -iname 'versions.tf' \! -path '*modules*' -exec dirname {} \; | xargs -L 1 bash -c 'cd "$0" && pwd && terraform init -upgrade'
-}
-
-terraform-lock-root() {
-    find . -iname 'versions.tf' \! -path '*modules*' -exec dirname {} \; | xargs -L 1 bash -c 'cd "$0" && pwd && terraform providers lock -platform=darwin_arm64 -platform=linux_amd64'
 }

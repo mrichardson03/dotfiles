@@ -14,9 +14,6 @@ unset LSCOLORS
 export CLICOLOR=1
 export CLICOLOR_FORCE=1
 
-# Nice looking prompt.
-export PS1="%F{green} %*%F{blue} %3~ %F{white}$ "
-
 ###############################################################################
 # Path                                                                        #
 ###############################################################################
@@ -33,16 +30,23 @@ else
   eval "$(/usr/local/bin/brew shellenv)"
 fi
 
-
-################################################################################
-# ZSH Auto-Completion                                                          #
-################################################################################
+###############################################################################
+# ZSH Auto-Completion                                                         #
+###############################################################################
 
 # Load auto-completions from brew site-functions directory.
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
+###############################################################################
+# zsh tools: oh-my-posh, zoxide, direnv                                       #
+###############################################################################
+
+eval "$(oh-my-posh init zsh --config $HOME/.dotfiles/ohmyposh/zen.json)"
+eval "$(zoxide init zsh)"
+eval "$(direnv hook zsh)"
 
 ###############################################################################
 # Aliases                                                                     #
@@ -57,36 +61,11 @@ alias commit-types="cat ~/.dotfiles/commit-types"
 alias ct="cat ~/.dotfiles/commit-types"
 
 ###############################################################################
-# ZSH Functions                                                               #
-###############################################################################
-
-# Remove all host keys for a given IP address.
-knownrm() {
-  re='^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$'
-  if ! [[ $1 =~ $re ]] ; then
-    echo "error: ip address missing" >&2;
-  else
-    sed -i '' -e "/$1/d" ~/.ssh/known_hosts
-  fi
-}
-
-# Pulled from https://about.gitlab.com/blog/2020/01/30/simple-trick-for-smaller-screenshots/
-function pngshrink() {
-  if [[ ! "$1" ]] ; then
-    echo "You must supply a filename."
-    return 0
-  fi
-
-  pngquant 64 --skip-if-larger --strip --ext=.png --force "$1"
-  zopflipng -y "$1" "$1"
-}
-
-###############################################################################
 # direnv                                                                      #
 ###############################################################################
 
 # Use direnv to load per directory environment variables.
-eval "$(direnv hook zsh)"
+
 
 ###############################################################################
 # 1Password                                                                   #
