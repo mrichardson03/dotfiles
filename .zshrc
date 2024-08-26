@@ -23,11 +23,11 @@ export PATH="$HOME/bin:$PATH"
 # Homebrew                                                                    #
 ###############################################################################
 
-ARCH=$(/usr/bin/arch)
-if [[ $ARCH == "arm64" ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+OS="$(/usr/bin/uname)"
+if [[ $OS == "Darwin" ]]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
 else
-  eval "$(/usr/local/bin/brew shellenv)"
+	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 ###############################################################################
@@ -52,7 +52,11 @@ eval "$(direnv hook zsh)"
 # Aliases                                                                     #
 ###############################################################################
 
-alias ls="ls -GF"
+if [[ $OS == "Darwin" ]]; then
+	alias ls="ls -GF"
+else
+	alias ls="ls --color=always -F"
+fi
 
 alias unssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 alias unscp="scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
@@ -61,15 +65,10 @@ alias commit-types="cat ~/.dotfiles/commit-types"
 alias ct="cat ~/.dotfiles/commit-types"
 
 ###############################################################################
-# direnv                                                                      #
-###############################################################################
-
-# Use direnv to load per directory environment variables.
-
-
-###############################################################################
 # 1Password                                                                   #
 ###############################################################################
 
 # Use 1Password SSH agent.
-export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+if [[ $OS == "Darwin" ]]; then
+  export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+fi
