@@ -25,9 +25,9 @@ export PATH="$HOME/bin:$PATH"
 
 OS="$(/usr/bin/uname)"
 if [[ $OS == "Darwin" ]]; then
-	eval "$(/opt/homebrew/bin/brew shellenv)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 else
-	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 ###############################################################################
@@ -53,9 +53,9 @@ eval "$(direnv hook zsh)"
 ###############################################################################
 
 if [[ $OS == "Darwin" ]]; then
-	alias ls="ls -GF"
+  alias ls="ls -GF"
 else
-	alias ls="ls --color=always -F"
+  alias ls="ls --color=always -F"
 fi
 
 alias unssh="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
