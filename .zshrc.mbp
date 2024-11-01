@@ -3,11 +3,14 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
+# Forward Terraform output directly.
+export TERRAGRUNT_FORWARD_TF_STDOUT=true
+
 # Avoid system and display sleep for presentations.
 alias nosleep="caffeinate -u -t 3600"
 
 # Use 1Password CLI user account.
-export OP_ACCOUNT=royalbluff.1password.com
+export OP_ACCOUNT=wizio.1password.com
 
 # Pull latest version of wizcli.
 wizcli-update() {
@@ -24,8 +27,8 @@ wizcli-update() {
 wizcli-auth() {
     # wizcli doesn't read environment variables, it needs them specified on the
     # auth call itself.
-    WIZ_CLIENT_ID=`op read "op://qwfrxxe3fbgabc3z3g5exaxy3i/m6ga4zjldekwajq6xho5nfa3iu/username"`
-    WIZ_CLIENT_SECRET=`op read "op://qwfrxxe3fbgabc3z3g5exaxy3i/m6ga4zjldekwajq6xho5nfa3iu/credential"`
+    WIZ_CLIENT_ID=`op read "op://64zs2id3h27jlrmvrpuuydimny/zqlmbko4mmtnvkirrkjv7y5baq/username"`
+    WIZ_CLIENT_SECRET=`op read "op://64zs2id3h27jlrmvrpuuydimny/zqlmbko4mmtnvkirrkjv7y5baq/credential"`
 
     wizcli auth --id $WIZ_CLIENT_ID --secret $WIZ_CLIENT_SECRET
 
