@@ -1,10 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
   "console_title_template": " {{ .Folder }}{{if .Root}}:: root{{end}}",
-  "palette": {
-    "bg": "#222436",
-    "t-background": "p:bg"
-  },
   "blocks": [
     {
       "alignment": "left",
@@ -26,8 +22,8 @@
           "foreground_templates": [
             "{{ if or (.Working.Changed) (.Staging.Changed) }}red{{ end }}",
             "{{ if and (gt .Ahead 0) (gt .Behind 0)}}blue{{ end }}",
-            "{{ if gt .Ahead 0 }}blue{{ end }}",
-            "{{ if gt .Behind 0 }}blue{{ end }}"
+            "{{ if gt .Ahead 0 }}cyan{{ end }}",
+            "{{ if gt .Behind 0 }}cyan{{ end }}"
           ],
           "template": "({{ .HEAD}})",
           "properties": {
@@ -52,7 +48,7 @@
           "type": "aws",
           "style": "plain",
           "foreground": "yellow",
-          "template": "\u2601 {{ .Profile}}{{ if .Region }}@{{ .Region }}{{ end }}"
+          "template": "\uE33D {{ .Profile}}{{ if .Region }}@{{ .Region }}{{ end }}"
         },
         {
           "type": "go",
@@ -87,11 +83,11 @@
     "template": "<b>>></b> "
   },
   "transient_prompt": {
-    "background": "p:bg",
+    "background": "transparent",
     "foreground": "blue",
     "template": "> "
   },
   "final_space": true,
   "version": 3,
-  "terminal_background": "p:bg"
+  "terminal_background": "transparent"
 }
