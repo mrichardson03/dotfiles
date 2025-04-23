@@ -1,5 +1,5 @@
 [user]
-    email = michaelr@rblabs.org
+    email = 8782+mrichardson03@users.noreply.github.com
     name = Michael Richardson
 [core]
     excludesfile = ~/.gitignore
@@ -35,7 +35,7 @@
 	templateDir = /Users/michaelr/.git-template
 [credential "https://github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+	helper = !gh auth git-credential
