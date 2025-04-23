@@ -4,7 +4,7 @@
 [core]
     excludesfile = ~/.gitignore
     autocrlf = input
-    editor = "code --wait"
+    editor = nvim
 [color]
     branch = auto
     diff = auto
