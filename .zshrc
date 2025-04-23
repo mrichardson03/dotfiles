@@ -44,7 +44,8 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 # zsh tools: oh-my-posh, zoxide, direnv                                       #
 ###############################################################################
 
-eval "$(oh-my-posh init zsh --config $HOME/.dotfiles/ohmyposh/zen.json)"
+# eval "$(oh-my-posh init zsh --config $HOME/.dotfiles/ohmyposh/zen.json)"
+eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
 
