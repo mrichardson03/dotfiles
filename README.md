@@ -1,14 +1,15 @@
 # dotfiles
 
 My config files.  A lot of this is copied from [geerlingguy/dotfiles](https://github.com/geerlingguy/dotfiles).
-Mainly used with macOS machines.
 
 ## Shell Setup
 
-Link files from this directory into $HOME, and link the `bin` directory to $HOME/bin.  That's it.
+Link `.zshrc` from this repository to `$HOME/.zshrc`.  Machine specific configuration can be placed in
+`$HOME/.zshrc.local`.
 
 ## Homebrew
 
-Software installs are managed using [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle).  Personal and work
-setups are located in `brew/personal` and `brew/work`.  Software can be installed using `brew bundle install`, and
+Additional software is managed using [Homebrew Bundle](https://github.com/Homebrew/homebrew-bundle).  Linux and macOS
+setups are located in `brew/linux/` and `brew/macos/`.  Software can be installed using `brew bundle install`, and
 cleanup done with `brew bundle cleanup`.
+
