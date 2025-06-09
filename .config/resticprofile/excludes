@@ -1,0 +1,13 @@
+$HOME/Downloads
+$HOME/Videos
+
+# Cache dirs
+$HOME/**/.cache
+$HOME/**/cache
+
+# Steam
+$HOME/.steam
+$HOME/.local/share/Steam
+
+# Podman
+$HOME/.local/share/containers/
