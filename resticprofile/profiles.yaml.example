@@ -1,0 +1,32 @@
+version: "1"
+
+default:
+  repository: "sftp:truenas:/mnt/storage/restic-repo"
+  password-file: "password"
+
+  initialize: true
+  force-inactive-lock: true
+
+  backup:
+    source:
+      - "/home/michaelr"
+    exclude-file: "excludes"
+    schedule: "hourly"
+    schedule-lock-wait: "10m"
+    send-after:
+      url: "https://hc-ping.com/<uuid>"
+
+  check:
+    schedule: "monthly"
+    schedule-lock-wait: "1h"
+
+  retention:
+    host: true
+    after-backup: true
+    keep-hourly: 8
+    keep-daily: 30
+    keep-monthly: 12
+    prune: true
+
+  snapshots:
+    host: true
