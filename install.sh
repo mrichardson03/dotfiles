@@ -1,0 +1,20 @@
+#!/usr/bin/bash
+
+set -euo pipefail
+set -x
+
+function create_config_symlink() {
+  if [[ -d "$XDG_CONFIG_HOME/$1" ]]; then
+    rm -rf -i "${XDG_CONFIG_HOME:?}/$1"
+    ln -sf "$DOTFILES/$1" "$XDG_CONFIG_HOME"
+  fi
+}
+
+# Directory for dotfiles checkout.
+export DOTFILES="$HOME/.dotfiles"
+
+export XDG_CONFIG_HOME="$HOME/.config"
+
+create_config_symlink kitty
+create_config_symlink nvim
+create_config_symlink resticprofile
