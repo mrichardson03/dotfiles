@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
 set -euo pipefail
-set -x
 
 function create_config_symlink() {
   if [[ -d "$XDG_CONFIG_HOME/$1" ]]; then

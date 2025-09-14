@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
 set -euo pipefail
-set -x
 
 export LOCAL_BIN="$HOME/.local/bin"
 export LOCAL_FONTS="$HOME/.local/share/fonts"
