@@ -6,8 +6,8 @@ set -x
 function create_config_symlink() {
   if [[ -d "$XDG_CONFIG_HOME/$1" ]]; then
     rm -rf -i "${XDG_CONFIG_HOME:?}/$1"
-    ln -sf "$DOTFILES/$1" "$XDG_CONFIG_HOME"
   fi
+  ln -sf "$DOTFILES/$1" "$XDG_CONFIG_HOME"
 }
 
 # Directory for dotfiles checkout.
