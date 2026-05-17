@@ -9,3 +9,21 @@
   url = {{ gitHubLatestReleaseAssetURL "creativeprojects/resticprofile" (printf "resticprofile_no_self_update_*_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
   executable = true
   path = "resticprofile"
+
+[".local/bin/opencode"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "anomalyco/opencode" "opencode-linux-x64.tar.gz" | quote }}
+  executable = true
+  path = "opencode"
+
+[".local/bin/terraform-docs"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "terraform-docs/terraform-docs" "terraform-docs-*-linux-amd64.tar.gz" | quote }}
+  executable = true
+  path = "terraform-docs"
+
+[".local/bin/tflint"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "terraform-linters/tflint" "tflint_linux_amd64.zip" | quote }}
+  executable = true
+  path = "tflint"

@@ -5,6 +5,10 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+#######################################################################
+# Path                                                                #
+#######################################################################
+
 {{- $paths := list }}
 {{- $homeDir := .chezmoi.homeDir }}
 {{- range $_, $relPath := list "bin" ".local/bin" }}
@@ -17,23 +21,28 @@ fi
 export PATH={{ toStrings $paths | join ":" }}:$PATH
 {{- end }}
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
-
-# User specific aliases and functions
-if [ -d ~/.bashrc.d ]; then
-    for rc in ~/.bashrc.d/*; do
-        if [ -f "$rc" ]; then
-            . "$rc"
-        fi
-    done
-fi
-unset rc
+#######################################################################
+# Editor                                                              #
+#######################################################################
 
 {{ if lookPath "nvim" -}}
 export EDITOR=nvim
 {{ else -}}
 export EDITOR=vim
+{{ end -}}
+
+#######################################################################
+# CLI Colors                                                          #
+#######################################################################
+
+unset LSCOLORS
+export CLICOLOR=1
+export CLICOLOR_FORCE=1
+
+{{ if eq .chezmoi.os "darwin" -}}
+alias ls="ls -GF"
+{{ else -}}
+alias ls="ls --color=always -F"
 {{ end -}}
 
 {{- /* vim: set filetype=bash: */}}
