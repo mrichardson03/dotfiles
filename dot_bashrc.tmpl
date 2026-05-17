@@ -1,0 +1,39 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+{{- $paths := list }}
+{{- $homeDir := .chezmoi.homeDir }}
+{{- range $_, $relPath := list "bin" ".local/bin" }}
+{{    $path := joinPath $homeDir $relPath }}
+{{-   if stat $path }}
+{{-     $paths = mustAppend $paths $path }}
+{{-   end }}
+{{- end }}
+{{- if $paths }}
+export PATH={{ toStrings $paths | join ":" }}:$PATH
+{{- end }}
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; do
+        if [ -f "$rc" ]; then
+            . "$rc"
+        fi
+    done
+fi
+unset rc
+
+{{ if lookPath "nvim" -}}
+export EDITOR=nvim
+{{ else -}}
+export EDITOR=vim
+{{ end -}}
+
+{{- /* vim: set filetype=bash: */}}

@@ -1,0 +1,72 @@
+{{- if not (eq .chezmoi.hostname "michael-desktop") }}
+$HOME/ISOs
+$HOME/Music
+{{ end -}}
+$HOME/Downloads
+$HOME/Videos
+
+## Presets, largely adapted from Vorta:
+## https://github.com/borgbase/vorta/tree/master/src/vorta/assets/exclusion_presets
+
+# Cache files
+$HOME/.cache
+$HOME/Caches
+$HOME/.var/app/*/cache
+$HOME/.var/app/*/Cache
+$HOME/.var/app/*/tmp
+
+# Recycle Bin/Trash
+$HOME/.local/share/Trash/*
+$HOME/.Trash/*
+$HOME/.Trash-*/*
+
+# Mozilla Firefox cache and config files
+$HOME/.cache/mozilla/firefox
+$HOME/.mozilla/firefox/*/.parentlock
+$HOME/.mozilla/firefox/*/Cache
+$HOME/.mozilla/firefox/*/XPC.mfasl
+$HOME/.mozilla/firefox/*/XUL.mfasl
+$HOME/.mozilla/firefox/*/blocklist.xml
+$HOME/.mozilla/firefox/*/compreg.dat
+$HOME/.mozilla/firefox/*/extensions.cache
+$HOME/.mozilla/firefox/*/extensions.ini
+$HOME/.mozilla/firefox/*/extensions.rdf
+$HOME/.mozilla/firefox/*/extensions.sqlite
+$HOME/.mozilla/firefox/*/extensions.sqlite-journal
+$HOME/.mozilla/firefox/*/minidumps
+$HOME/.mozilla/firefox/*/pluginreg.dat
+$HOME/.mozilla/firefox/*/urlclassifier3.sqlite
+$HOME/.mozilla/firefox/*/xpti.dat
+$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*/.parentlock
+$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*/XPC.mfasl
+$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*/XUL.mfasl
+$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*/blocklist.xml
+$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*/compreg.dat
+$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*/extensions.cache
+$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*/extensions.ini
+$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*/extensions.rdf
+$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*/extensions.sqlite
+$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*/extensions.sqlite-journal
+$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*/minidumps
+$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*/pluginreg.dat
+$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*/urlclassifier3.sqlite
+$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox/*/xpti.dat
+$HOME/.var/app/org.mozilla.firefox/cache
+
+# Steam
+$HOME/.local/share/Steam/steamapps
+$HOME/.var/app/com.valvesoftware.Steam/.local/share/Steam/steamapps
+
+# Podman
+$HOME/.local/share/containers
+
+# Minikube
+$HOME/.minikube/machines/minikube/boot2docker.iso
+
+# Python
+*/__pycache__
+*.pyc
+*.pyo
+*/.virtualenvs
+*/venv/*
+*/.venv/*

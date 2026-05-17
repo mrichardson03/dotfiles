@@ -1,0 +1,11 @@
+[".local/bin/lazygit"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" "lazygit_*_linux_x86_64.tar.gz" | quote }}
+  executable = true
+  path = "lazygit"
+
+[".local/bin/resticprofile"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "creativeprojects/resticprofile" (printf "resticprofile_no_self_update_*_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+  executable = true
+  path = "resticprofile"

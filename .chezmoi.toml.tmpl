@@ -1,0 +1,5 @@
+{{- $resticprofile_hc_url := promptStringOnce . "resticprofile_hc_url" "Heathcheck URL for resticprofile" -}}
+
+[data]
+  email = "8782+mrichardson03@users.noreply.github.com"
+  resticprofile_hc_url = {{ $resticprofile_hc_url | quote }}
