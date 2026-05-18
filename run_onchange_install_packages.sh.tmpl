@@ -1,0 +1,27 @@
+{{ if eq .chezmoi.osRelease.id "fedora" -}}
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\t\n'
+
+sudo dnf install -y \
+  dotenv \
+  fd-find \
+  fzf \
+  gh \
+  git-core \
+  helm \
+  kubernetes1.35 \
+  k9s \
+  neovim \
+  ripgrep \
+  shellcheck \
+  shfmt \
+  syncthing \
+  tree-sitter-cli \
+  uv \
+  xsel
+
+sudo dnf install -y @virtualization
+
+{{ end }}
