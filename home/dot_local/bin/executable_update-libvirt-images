@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+# Downloads cloud images for Debian and Ubuntu, and imports them into libvirt.
+
+# Storage pool used to import images.
+POOL="default"
+
+verify-commands() {
+  for cmd in virsh curl; do
+    if ! command -v "${cmd}" >/dev/null 2>&1; then
+      echo "Missing command ${cmd}. Exiting."
+      exit 1
+    fi
+  done
+}
+
+verify-pool() {
+  if ! virsh pool-info "${POOL}" >/dev/null 2>&1; then
+    echo "Storage pool '${POOL}' not found. Exiting."
+    exit 1
+  fi
+}
+
+update-image() {
+  local template=$1
+  local image_url=$2
+  local download_file=${image_url##*/}
+  local tmp_dir
+
+  tmp_dir="$(mktemp -d -t cloudimg-XXXXXX)"
+
+  if virsh vol-info --pool "${POOL}" --vol "${template}" >/dev/null 2>&1; then
+    echo "Deleting existing image '${template}'."
+    virsh vol-delete --pool "${POOL}" --vol "${template}"
+  fi
+
+  echo "Downloading image for '${template}'."
+  curl -s -o "${tmp_dir}/${download_file}" -L "${image_url}"
+
+  echo "Creating image '${template}' in pool '${POOL}'."
+  virsh vol-create-as "${POOL}" "${template}" 8G --format qcow2
+  virsh vol-upload --pool "${POOL}" --vol "${template}" "${tmp_dir}/${download_file}"
+
+  rm -f "${tmp_dir}/${download_file}"
+  if [[ -n "${tmp_dir}" && -d "${tmp_dir}" ]]; then
+    rmdir "${tmp_dir}"
+  fi
+}
+
+verify-commands
+verify-pool
+
+update-image "base-fedora-44.qcow2" "https://download.fedoraproject.org/pub/fedora/linux/releases/44/Cloud/x86_64/images/Fedora-Cloud-Base-Generic-44-1.7.x86_64.qcow2"
+update-image "base-debian-13.qcow2" "https://cloud.debian.org/images/cloud/trixie/latest/debian-13-generic-amd64.qcow2"
+update-image "base-ubuntu-2404.qcow2" "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
+update-image "base-ubuntu-2604.qcow2" "https://cloud-images.ubuntu.com/resolute/current/resolute-server-cloudimg-amd64.img"
