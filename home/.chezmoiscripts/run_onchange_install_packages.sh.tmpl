@@ -1,27 +1,38 @@
-{{ if eq .chezmoi.osRelease.id "fedora" -}}
 #!/usr/bin/env bash
 
 set -euo pipefail
 IFS=$'\t\n'
 
-sudo dnf install -y \
-  dotenv \
-  fd-find \
-  fzf \
-  gh \
-  git-core \
-  helm \
-  kubernetes1.35 \
-  k9s \
-  neovim \
-  ripgrep \
-  shellcheck \
-  shfmt \
-  syncthing \
-  tree-sitter-cli \
-  uv \
-  xsel
+{{ if eq .osid "linux-debian" "linux-raspbian" -}}
 
-sudo dnf install -y @virtualization
+{{ $packages := list -}}
 
-{{ end }}
+{{ $packages := list
+  "bat"
+  "build-essential"
+  "curl"
+  "fd-find"
+  "fzf"
+  "git"
+  "git-lfs"
+  "jq"
+  "ripgrep"
+  "shellcheck" -}}
+
+{{ if not .headless -}}
+{{   $packages = concat $packages (list
+       "direnv"
+       "libguestfs-tools"
+       "libvirt-daemon-system"
+       "podman"
+       "podman-compose"
+       "qemu-system"
+       "syncthing"
+       "virt-manager"
+       "xclip" ) -}}
+{{ end -}}
+
+sudo apt-get update
+sudo apt-get install -y {{ $packages | join " " }}
+
+{{ end -}}

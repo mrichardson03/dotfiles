@@ -1,0 +1,71 @@
+[".local/bin/flux"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "fluxcd/flux2" "flux_*_linux_amd64.tar.gz" | quote }}
+  executable = true
+  path = "flux"
+
+[".local/bin/k9s"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "derailed/k9s" "k9s_Linux_amd64.tar.gz" | quote }}
+  executable = true
+  path = "k9s"
+
+[".local/bin/lazygit"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" "lazygit_*_linux_x86_64.tar.gz" | quote }}
+  executable = true
+  path = "lazygit"
+
+[".local/bin/nvim"]
+    type = "file"
+    url = {{ gitHubLatestReleaseAssetURL "neovim/neovim" "nvim-linux-x86_64.appimage" | quote }} 
+    refreshPeriod = "672h"
+    executable = true
+
+[".local/bin/resticprofile"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "creativeprojects/resticprofile" (printf "resticprofile_no_self_update_*_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
+  executable = true
+  path = "resticprofile"
+
+[".local/bin/opencode"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "anomalyco/opencode" "opencode-linux-x64.tar.gz" | quote }}
+  executable = true
+  path = "opencode"
+
+[".local/bin/terraform-docs"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "terraform-docs/terraform-docs" "terraform-docs-*-linux-amd64.tar.gz" | quote }}
+  executable = true
+  path = "terraform-docs"
+
+[".local/bin/tflint"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "terraform-linters/tflint" "tflint_linux_amd64.zip" | quote }}
+  executable = true
+  path = "tflint"
+
+[".local/bin/tofu"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "opentofu/opentofu" "tofu_*_linux_amd64.tar.gz" | quote }}
+  executable = true
+  path = "tofu"
+
+[".local/bin/uv"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "astral-sh/uv" "uv-x86_64-unknown-linux-gnu.tar.gz" | quote }}
+  executable = true
+  path = "uv-x86_64-unknown-linux-gnu/uv"
+
+{{- $fontDir := "" }}
+{{- if eq .chezmoi.os "linux" }}
+{{-   $fontDir = ".local/share/fonts" }}
+{{- end }}
+{{- range (list
+      "JetBrainsMonoNerdFontMono-Regular.ttf") }}
+["{{ $fontDir }}/{{ . }}"]
+  type = "archive-file"
+  url = {{ gitHubLatestReleaseAssetURL "ryanoasis/nerd-fonts" "JetBrainsMono.tar.xz" | quote }}
+  path = {{ . | quote }}
+{{- end }}

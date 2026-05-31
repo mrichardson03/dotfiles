@@ -1,5 +1,14 @@
+{{- $headless := false -}}
+
 {{- $resticprofile_hc_url := promptStringOnce . "resticprofile_hc_url" "Heathcheck URL for resticprofile" -}}
+
+{{- $osID := .chezmoi.os -}}
+{{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
+{{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
 
 [data]
   email = "8782+mrichardson03@users.noreply.github.com"
   resticprofile_hc_url = {{ $resticprofile_hc_url | quote }}
+  headless = {{ $headless }}
+  osid = {{ $osID | quote }}
