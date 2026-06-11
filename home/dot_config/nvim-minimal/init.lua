@@ -37,7 +37,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Behavior settings
 vim.opt.backspace = "indent,eol,start"  -- Allow backspace over indentation, line breaks, start of insert mode
 vim.opt.clipboard:append("unnamedplus") -- Use system clipboard
-vim.out.mouse = "a"                     -- Enable mouse support
+vim.opt.mouse = "a"                     -- Enable mouse support
 
 -- Split behavior
 vim.opt.splitbelow = true               -- When horizontal splitting, new window goes below
