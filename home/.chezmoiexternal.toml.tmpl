@@ -3,18 +3,21 @@
   url = {{ gitHubLatestReleaseAssetURL "fluxcd/flux2" "flux_*_linux_amd64.tar.gz" | quote }}
   executable = true
   path = "flux"
+  refreshPeriod = "168h"
 
 [".local/bin/k9s"]
   type = "archive-file"
   url = {{ gitHubLatestReleaseAssetURL "derailed/k9s" "k9s_Linux_amd64.tar.gz" | quote }}
   executable = true
   path = "k9s"
+  refreshPeriod = "168h"
 
 [".local/bin/lazygit"]
   type = "archive-file"
   url = {{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" "lazygit_*_linux_x86_64.tar.gz" | quote }}
   executable = true
   path = "lazygit"
+  refreshPeriod = "168h"
 
 [".local/bin/nvim"]
     type = "file"
@@ -27,36 +30,42 @@
   url = {{ gitHubLatestReleaseAssetURL "creativeprojects/resticprofile" (printf "resticprofile_no_self_update_*_%s_%s.tar.gz" .chezmoi.os .chezmoi.arch) | quote }}
   executable = true
   path = "resticprofile"
+  refreshPeriod = "168h"
 
 [".local/bin/opencode"]
   type = "archive-file"
   url = {{ gitHubLatestReleaseAssetURL "anomalyco/opencode" "opencode-linux-x64.tar.gz" | quote }}
   executable = true
   path = "opencode"
+  refreshPeriod = "168h"
 
 [".local/bin/terraform-docs"]
   type = "archive-file"
   url = {{ gitHubLatestReleaseAssetURL "terraform-docs/terraform-docs" "terraform-docs-*-linux-amd64.tar.gz" | quote }}
   executable = true
   path = "terraform-docs"
+  refreshPeriod = "168h"
 
 [".local/bin/tflint"]
   type = "archive-file"
   url = {{ gitHubLatestReleaseAssetURL "terraform-linters/tflint" "tflint_linux_amd64.zip" | quote }}
   executable = true
   path = "tflint"
+  refreshPeriod = "168h"
 
 [".local/bin/tofu"]
   type = "archive-file"
   url = {{ gitHubLatestReleaseAssetURL "opentofu/opentofu" "tofu_*_linux_amd64.tar.gz" | quote }}
   executable = true
   path = "tofu"
+  refreshPeriod = "168h"
 
 [".local/bin/uv"]
   type = "archive-file"
   url = {{ gitHubLatestReleaseAssetURL "astral-sh/uv" "uv-x86_64-unknown-linux-gnu.tar.gz" | quote }}
   executable = true
   path = "uv-x86_64-unknown-linux-gnu/uv"
+  refreshPeriod = "168h"
 
 {{- $fontDir := "" }}
 {{- if eq .chezmoi.os "linux" }}
