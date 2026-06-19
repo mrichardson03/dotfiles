@@ -12,13 +12,6 @@
   path = "k9s"
   refreshPeriod = "168h"
 
-[".local/bin/lazygit"]
-  type = "archive-file"
-  url = {{ gitHubLatestReleaseAssetURL "jesseduffield/lazygit" "lazygit_*_linux_x86_64.tar.gz" | quote }}
-  executable = true
-  path = "lazygit"
-  refreshPeriod = "168h"
-
 [".local/bin/nvim"]
     type = "file"
     url = {{ gitHubLatestReleaseAssetURL "neovim/neovim" "nvim-linux-x86_64.appimage" | quote }} 
